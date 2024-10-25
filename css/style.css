@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #101114;    /* Background color */
+    --pc: #1C1D20;    /* Primary color */
+    --sc: #4A4D57;    /* Secondary color */
+    --ac: #00FFC4;    /* Accent color */
+    --sac: #006c53;   /* Secondary Accent Color */
+    --tc: #F9F9F9;    /* Text color */
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--tc);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 120px auto 0 auto;
+    max-width: 500px;
+}
+
+.stats-container {
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid var(--ac);
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    width: 100%;
+}
+
+.details {
+    width: 100%;
+}
+
+#progressBar {
+    width: 100%;
+    height: 10px;
+    background-color: var(--sac);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#progress {
+    width: 50%;
+    height: 10px;
+    background-color: var(--ac);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#numbers {
+    width: 100px;
+    height: 100px;
+    background-color: var(--ac);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+form {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 16px;
+    background-color: var(--sc);
+    border: 1px solid var(--ac);
+    border-radius: 10px;
+    color: var(--tc);
+}
+
+button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--sac);
+    color: var(--tc);
+    font-size: 30px;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.task-list {
+    list-style: none;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--pc);
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.task-left {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Gap between checkbox and text */
+}
+
+.task-item span {
+    font-size: 16px;
+    color: var(--tc);
+}
+
+.task-item button.delete-task {
+    background-color: transparent;
+    color: var(--tc);
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.task-item button.delete-task:hover {
+    color: red;
+}
