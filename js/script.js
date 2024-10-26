@@ -8,6 +8,7 @@ const loadTasks = () => {
     const storedTasks = localStorage.getItem(`tasks_${month}`);
     tasks = storedTasks ? JSON.parse(storedTasks) : [];
     renderTasks();
+    updateUnfinishedTaskCount(); // Update the unfinished task count
 };
 
 // Save tasks to local storage
@@ -20,6 +21,7 @@ const addTask = (taskText) => {
     tasks.push({ text: taskText, completed: false });
     saveTasks();
     renderTasks();
+    updateUnfinishedTaskCount(); // Update the unfinished task count
 };
 
 // Function to render tasks
@@ -38,7 +40,10 @@ const renderTasks = () => {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = task.completed;
-        checkbox.addEventListener("change", () => toggleTaskCompletion(index));
+        checkbox.addEventListener("change", () => {
+            toggleTaskCompletion(index);
+            updateUnfinishedTaskCount(); // Update the unfinished task count
+        });
         taskLeft.appendChild(checkbox);
 
         const taskText = document.createElement("span");
@@ -51,7 +56,10 @@ const renderTasks = () => {
         const deleteButton = document.createElement("button");
         deleteButton.classList.add("delete-task");
         deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
-        deleteButton.addEventListener("click", () => deleteTask(index));
+        deleteButton.addEventListener("click", () => {
+            deleteTask(index);
+            updateUnfinishedTaskCount(); // Update the unfinished task count
+        });
         taskItem.appendChild(deleteButton);
 
         taskList.appendChild(taskItem);
@@ -84,6 +92,12 @@ const updateProgress = () => {
 
     progressElement.style.width = `${progressPercent}%`;
     numbersElement.textContent = `${completedTasks} / ${totalTasks}`;
+};
+
+// Update unfinished task count in local storage
+const updateUnfinishedTaskCount = () => {
+    const unfinishedTasks = tasks.filter(task => !task.completed).length;
+    localStorage.setItem(`unfinishedTasks_${month}`, unfinishedTasks);
 };
 
 // Event listener for form submission

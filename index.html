@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, content="width=device-width, initial-scale=1.0">
     <title>Kartu Bulanan</title>
     <link rel="stylesheet" href="css/mainstyle.css">
 </head>
@@ -12,7 +12,7 @@
         <img alt="Profile picture" height="50" src="/images/Profile.jpg" width="50"/>
         <div class="profile-info">
           <h3>User</h3>
-          <p>Total Tugas yang belum selesai : </p>
+          <p>Total Tugas yang belum selesai: <span id="totalTasks">0</span></p>
         </div>
       </div>
       <br>
@@ -21,53 +21,72 @@
           <!-- Card for each month -->
           <a href="Januari.html" class="card">
               <h2>Januari</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="Januari">0</span></p>
           </a>
           <a href="Februari.html" class="card">
               <h2>Februari</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="Februari">0</span></p>
           </a>
           <a href="Maret.html" class="card">
               <h2>Maret</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="Maret">0</span></p>
           </a>
           <a href="April.html" class="card">
               <h2>April</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="April">0</span></p>
           </a>
           <a href="Mei.html" class="card">
               <h2>Mei</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="Mei">0</span></p>
           </a>
           <a href="Juni.html" class="card">
               <h2>Juni</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="Juni">0</span></p>
           </a>
           <a href="Juli.html" class="card">
               <h2>Juli</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="Juli">0</span></p>
           </a>
           <a href="Agustus.html" class="card">
               <h2>Agustus</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="Agustus">0</span></p>
           </a>
           <a href="September.html" class="card">
               <h2>September</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="September">0</span></p>
           </a>
           <a href="Oktober.html" class="card">
               <h2>Oktober</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="Oktober">0</span></p>
           </a>
           <a href="November.html" class="card">
               <h2>November</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="November">0</span></p>
           </a>
           <a href="Desember.html" class="card">
               <h2>Desember</h2>
-              <p>Total Tugas yang belum di kerjakan: </p>
+              <p>Total Tugas yang belum di kerjakan: <span class="monthTasks" data-month="Desember">0</span></p>
           </a>
       </div>
     </div>
+    
+    <script>
+        const updateProfileCard = () => {
+            const monthElements = document.querySelectorAll('.monthTasks');
+            let totalUnfinishedTasks = 0;
+
+            monthElements.forEach(monthElement => {
+                const month = monthElement.getAttribute('data-month');
+                const unfinishedTasks = localStorage.getItem(`unfinishedTasks_${month}`) || 0;
+                monthElement.textContent = unfinishedTasks;
+                totalUnfinishedTasks += parseInt(unfinishedTasks, 10);
+            });
+
+            document.getElementById('totalTasks').textContent = totalUnfinishedTasks;
+        };
+
+        // Call the function to update the profile card
+        updateProfileCard();
+    </script>
 </body>
 </html>
